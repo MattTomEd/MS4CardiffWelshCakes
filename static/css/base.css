@@ -265,12 +265,19 @@ input[name='q']::placeholder {
     border-radius: 0;
 }
 
+.flavour-banner {
+    border-radius: 25px;
+    background: white;
+    padding: 20px;
+    height: 200px;
+}
+
 /* BLOG */
 
 .blog-banner {
 
     height: 200px;
-
+    
 }
 
 /* POLLS */
