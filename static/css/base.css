@@ -3,10 +3,10 @@ html {
 }
 
 body {
-    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    background: url('/media/welshcakeheader.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
-    color: #555;
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     font-family: 'Lato';
 }
 
@@ -79,7 +79,7 @@ body {
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: white;
+	background: rgb(59, 49, 49);
 	z-index: -1;
 }
 
@@ -276,11 +276,17 @@ input[name='q']::placeholder {
 /* POLLS */
 
 .poll-box {
-    padding: 200px 100px 0px 100px;
+    padding: 200px 10% 0px 10%;
 }
 
 .poll-box ul {
     list-style-type: none;
+}
+
+.poll-banner {
+    width: 100%;
+    background-color: white;
+    height: 200px;
 }
 
 .masthead {
