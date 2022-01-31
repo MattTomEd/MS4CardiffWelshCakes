@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'profiles',
     'blog',
-    'polls',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
