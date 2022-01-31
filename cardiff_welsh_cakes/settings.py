@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'profiles',
     'blog',
+    'polls',
 ]
 
 MIDDLEWARE = [
