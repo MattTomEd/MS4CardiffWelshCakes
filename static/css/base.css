@@ -265,6 +265,24 @@ input[name='q']::placeholder {
     border-radius: 0;
 }
 
+/* BLOG */
+
+.blog-banner {
+
+    height: 200px;
+
+}
+
+.masthead {
+    background: #d4d4d4;
+    height: auto;
+    padding-bottom: 15px;
+    padding-top: 10px;
+}
+
+.card-body {
+    background-color: #d1d0d0;
+}
 
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
