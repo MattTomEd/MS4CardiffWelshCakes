@@ -273,6 +273,16 @@ input[name='q']::placeholder {
 
 }
 
+/* POLLS */
+
+.poll-box {
+    padding: 200px 100px 0px 100px;
+}
+
+.poll-box ul {
+    list-style-type: none;
+}
+
 .masthead {
     background: #d4d4d4;
     height: auto;

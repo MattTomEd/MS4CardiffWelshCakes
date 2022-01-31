@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="poll-box">
+    {% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+        <li><h3><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h3></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
