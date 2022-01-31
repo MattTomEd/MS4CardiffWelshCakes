@@ -1,16 +1,10 @@
-from django.shortcuts import render
 from django.views import generic
 from .models import Post
 
-
-class PostList(generic.ListView):
-    """
-    Return all posts that have Published status. Order chronologically.
-    """
+class post_list(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_at')
     template_name = 'index.html'
 
-
-class PostDetail(generic.DetailView):
+class post_detail(generic.DetailView):
     model = Post
     template_name = 'post_detail.html'
