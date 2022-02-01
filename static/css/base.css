@@ -304,7 +304,12 @@ input[name='q']::placeholder {
 }
 
 .card-body {
-    background-color: #d1d0d0;
+    background-color: white;
+}
+
+.poll-title-card-body {
+    background-color: white;
+    width: 100%;
 }
 
 /* fixed top navbar only on medium and up */
