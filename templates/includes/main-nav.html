@@ -3,12 +3,12 @@
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-white mr-5" href="#" id="all-products-link"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Cakes
+                All Items
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
                 <a href="{% url 'products' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
-                <a href="{% url 'products' %}" class="dropdown-item">All Cakes</a>
+                <a href="{% url 'products' %}" class="dropdown-item">All Items</a>
             </div>
         </li>
 
@@ -23,6 +23,17 @@
         </li>
         <li class="nav-item">
             <a class="logo-font font-weight-bold nav-link text-white mr-5" href="{% url 'products' %}?category=glutenfree" class="dropdown-item">Gluten Free</a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-white mr-5" href="#" id="hampers-link"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gifts and Hampers
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+                <a href="{% url 'products' %}?category=gifts" class="dropdown-item">Gifts</a>
+                <a href="{% url 'products' %}?category=hampers" class="dropdown-item ">Hampers</a>
+            </div>
         </li>
 
         <li class="nav-item">
