@@ -1,6 +1,10 @@
+from django.shortcuts import get_object_or_404, render
 from django.views import generic
-from .models import Post
 from django.utils import timezone
+
+from .forms import CommentForm
+from .models import Post
+
 
 class post_list(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_at')
@@ -10,9 +14,6 @@ class post_content(generic.DetailView):
     model = Post
     template_name = 'post_content.html'
     
-from .models import Post
-from .forms import CommentForm
-from django.shortcuts import render, get_object_or_404
 
 def post_detail(request, slug):
     template_name = 'post_content.html'

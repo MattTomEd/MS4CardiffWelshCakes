@@ -18,10 +18,15 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+
+        return reverse("post_detail", kwargs={"slug": str(self.slug)})
     
 
 class Comment(models.Model):
