@@ -7,7 +7,7 @@ body {
     background-size: cover;
     height: calc(100vh - 164px);
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-    font-family: 'Lato';
+    font-family: 'Source Serif 4', sans-serif;
 }
 
 /* from Bulma */
