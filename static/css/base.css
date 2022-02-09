@@ -335,12 +335,16 @@ input[name='q']::placeholder {
         padding-top: 116px;
     }
 
+    body {
+        height: calc(100vh - 116px);
+    }
+
     .logo-font {
         font-size: 22px;
     }
 
-    body {
-        height: calc(100vh - 116px);
+    h1 {
+        font-size: 22px;
     }
 
     body {
