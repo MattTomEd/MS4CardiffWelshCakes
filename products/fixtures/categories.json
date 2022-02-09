@@ -2,63 +2,49 @@
     "pk": 1,
     "model": "products.category",
     "fields": {
-        "name": "activewear",
-        "friendly_name": "Activewear"
+        "name": "gifts",
+        "friendly_name": "Gifts"
     }
 }, {
     "pk": 2,
     "model": "products.category",
     "fields": {
-        "name": "bed_bath",
-        "friendly_name": "Bed & Bath"
+        "name": "newflavours",
+        "friendly_name": "New Flavours"
     }
 }, {
     "pk": 3,
     "model": "products.category",
     "fields": {
-        "name": "clearance",
-        "friendly_name": "Clearance"
+        "name": "classic",
+        "friendly_name": "Classic"
     }
 }, {
     "pk": 4,
+    "model": "products.category",
+    "fields": {
+        "name": "vegan",
+        "friendly_name": "Vegan"
+    }
+}, {
+    "pk": 5,
     "model": "products.category",
     "fields": {
         "name": "deals",
         "friendly_name": "Deals"
     }
 }, {
-    "pk": 5,
-    "model": "products.category",
-    "fields": {
-        "name": "essentials",
-        "friendly_name": "Essentials"
-    }
-}, {
     "pk": 6,
     "model": "products.category",
     "fields": {
-        "name": "jeans",
-        "friendly_name": "Jeans"
+        "name": "hampers",
+        "friendly_name": "Hampers"
     }
 }, {
     "pk": 7,
     "model": "products.category",
     "fields": {
-        "name": "kitchen_dining",
-        "friendly_name": "Kitchen & Dining"
-    }
-}, {
-    "pk": 8,
-    "model": "products.category",
-    "fields": {
-        "name": "new_arrivals",
-        "friendly_name": "New Arrivals"
-    }
-}, {
-    "pk": 9,
-    "model": "products.category",
-    "fields": {
-        "name": "shirts",
-        "friendly_name": "Shirts"
+        "name": "glutenfree",
+        "friendly_name": "Gluten Free"
     }
 }]
