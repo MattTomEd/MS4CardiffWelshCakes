@@ -1,6 +1,6 @@
 <h1 align="center">Milestone Project 4 - Cardiff Welsh Cakes</h1>
 
-[View the live project here.](https://ms4-cardiffwelshcakes.herokuapp.com//)
+[View the live project here.](https://ms4-cardiffwelshcakes.herokuapp.com/)
 
 For the MS4 brief, I have worked on a website that used Django, Stripe and other frameworks to create a fully functional online store to buy welsh cakes and gifts. Customers are able to browse, put items into a bag, check out items using their payment information and can leave comments on the site's blogging functionality. They can also vote on new flavours posted onto the sute by superusers.
 
