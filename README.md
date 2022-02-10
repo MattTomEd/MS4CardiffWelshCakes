@@ -1,108 +1,375 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h1 align="center">Milestone Project 4 - Cardiff Welsh Cakes</h1>
 
-Welcome Matthew Edwards,
+[View the live project here.](https://ms4-cardiffwelshcakes.herokuapp.com//)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+For the MS4 brief, I have worked on a website that used Django, Stripe and other frameworks to create a fully functional online store to buy welsh cakes and gifts. Customers are able to browse, put items into a bag, check out items using their payment information and can leave comments on the site's blogging functionality. They can also vote on new flavours posted onto the sute by superusers.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+![Responsiveness test](wireframes/resp1.png)
+![Responsiveness test](wireframes/resp2.png)
 
-## Gitpod Reminders
+# User Experience (UX)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+# Strategy plane
 
-`python3 -m http.server`
+## Aims of the website
 
-A blue button should appear to click: _Make Public_,
+The identified needs of the site have been measured as below: 
 
-Another blue button should appear to click: _Open Browser_.
+*   Provide users with a tool to search for items to purchase
+*   Provide developers with a tool to gather welsh cake items to purchase using the website
+*   Allow administration users to post blog and poll pages to update users on news and new items 
+*   Provide users with an account to manage their cart, their payment details and their address
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
 
-A blue button should appear to click: _Make Public_,
+# Scope plane
 
-Another blue button should appear to click: _Open Browser_.
+*   A searchable database of items that users can browse and click on to view more information about an item's description or price
+*   A blog system with the ability for users to leave comments, that can be approved by administrators
+*   Design philosophy that is intuitive and does not need users to ask what they need to do to go forward
+*   Use Django to use templates and views effectively to seamlessly move between different pages and areas of the website
+*   Image upload functionality for each item
+*   Polling for users to vote on new items, or other topics posted by administration
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+# Structure plane
 
-To log into the Heroku toolbelt CLI:
+This website has a base.html page that provides the skeleton structure of the site. Other pages feed in to this structure, implementing logic where needed to display different information. For example, if the polling page has no current votes on the page, it will tell the user that no polls are currently active.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+Users must be able to exit out of a page and back to the search results if needed, either by using the navbar or by using buttons on the current form or page.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
-------
+*   Consistency – Pages must look, feel and interact in a consistent way. This applies to dropdown fields for developers as well as selecting fields in a table
 
-## Release History
+*   Predictability – The website must respond in a predictable manner - particularly important when users wish to purchase items using sensitive information. Toast messages provide the user with updates based on their status, for example, if a user needs to put more items in their bag to reach the free delivery limit.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+*   Learnability – Features must be intuitive and feature single-click learning to prevent visitors becoming frustrating and clicking away
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+*   Visibility – Features must be visible, with content hinting included as appropriate
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+*   Feedback – Input fields and clickable events should respond in a way that assures the user that an event is progressing. Form fields have data verification - for example, if a user inputs an email address incorrectly.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+## Database/Model Structure
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+The items in this website are relational. The structure is as follows:
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+**1.  categories**
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+    name:
+    friendly_name:
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+**2.  products**
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+    sku: Unique database number.
+    name: Item name.
+    description: Text content.
+    price: Item price.
+    category: Category of the item.
+    rating: Rating number.
+    image_url: 
+    image:
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+The models used in this website allow a superuser to create items in the following format:
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+**1.  blogs**
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+    title: Blog title.
+    slug: Generates the slug for the URL.
+    author: Blog author (superuser account)
+    updated_at: If the post was updated, displays the date.
+    content: Text content.
+    created_at: Creation date.
+    status: Draft or Published statues available.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+**2.  comments**
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+    post: This field grabs the post that the comments relate to.
+    name: Name of the poster.
+    email: Email of the poster.
+    created_on: Date of the comment.
+    body: Text content.
+    active: Admin uses this field to approve a comment.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+**3.  checkout**
 
-------
+    order_number: unique order number generated for the user.
+    user_profile: user's currently logged in account.
+    full_name: name of the user.
+    email: email of the user.
+    phone_number: Contact number of the user.
+    country: Country of the user.
+    postcode: Postcode of the user.
+    town_or_city: City of the user.
+    street_address1
+    street_address2: Address of the user.
+    county
+    date
+    delivery_cost: Delivery cost set in the backend.
+    order_total: Combined total of items in the bag.
+    grand_total: Combined total of delivery (if applicable) and the items in the bag.
 
-## FAQ about the uptime script
 
-**Why have you added this script?**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
 
-**How will this affect me?**
+# Skeleton plane
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+## Wireframes
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+-   Starting state - [View](wireframes/desktop/Starting_state.png)
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+-   Product listings - [View](wireframes/desktop/Product_listings.png)
 
-**So….?**
+-   Bag listings - [View](wireframes/desktop/Bag_listings.png)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+-   Payment page - [View](wireframes/desktop/Payment_page.png)
 
-**Can I opt out?**
+-   Checkout page - [View](wireframes/desktop/Confirmation_page.png)
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+-   Blog overview - [View](wireframes/desktop/Blog_overview.png)
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+-   Poll pages - [View](wireframes/desktop/Polling.png)
 
-**Anything more?**
+##  Site structure
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+-   Registering an account requires an email, a password and a username. Users will then be able to see their personal information. Session storage can store contents of their bag. Users can also leave comments on blog posts.
+-   Superusers can add extra items on the website's front end. This requires entering data into a form (with data validation) with an optional image if needed.
+-   When adding items to a bag, users are provided with toast messages in the top right of the screen that update them on their current purchase status (including if they decide to edit or remove an item). 
+-   Pages add to the base structure of the website using Jira and for/if statements that show certain pages depending on logic. Django also displays other templates depending on the URL returned. 
+-   Admin users have the ability to edit and delete users, products, blogs, polls and categories. Admin users cannot delete other admin users.
+-   In future versions of this build, I would plan to add the ability to 'wishlist' items that users can look at on their profile. This would be separate to the checkout bag as it would be a sharable list of items.
 
----
+    
+# Surface plane
 
-Happy coding!
+## Colour Scheme
+I have chosen a dark colour style, using white text or lighter colours to differentiate information like descriptions or prices. Blog entries and poll entries use the Bootstrap card functionality to differentiate different entries from each other.
+
+## Icons
+Font Awesome icons have been utilised in this project to provide more style to the page. 
+
+# User stories
+
+## First Time Visitor Goals
+
+1. As a First Time Visitor, I want to search for items that I am interested in buying and learning more about them.
+2. As a First Time Visitor, I want to be able to create an account to purchase items and use my personal information to get them delivered to me.
+
+## Returning Visitor Goals
+
+1. As a Returning Visitor, I want to be able to return the cart that I had filled previously.
+2. As a Returning Visitor, I want to be able to learn more about the store through extra information in blog posts.
+
+## Super User Goals
+
+1. As a Super User, I want to be able to add blog posts and polling for users to interact with.
+2. As a Super User, I want to be able to use CRUD to create, remove, edit or delete products, users, categories or blog posts.
+
+
+
+## Technologies Used
+
+### Languages Used
+
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+-   [Python](https://en.wikipedia.org/wiki/Python)
+-   [Jinja:](https://jinja.palletsprojects.com/en/2.10.x/)
+
+
+### Frameworks, Libraries & Programs Used
+
+1. [Django](https://www.djangoproject.com/)
+    - This is the Python framework that is used for its functionality with models and views.
+2. [Font Awesome:](https://fontawesome.com/)
+    - Font Awesome has been used for icons used in parts of the site.
+3. [jQuery:](https://jquery.com/)
+    - jQuery has been used to enable certain browser functionality and Bootstrap functions.
+4. [Git](https://git-scm.com/)
+    - Git has been used as a version control system, which enables viewers to see the deployment history and design process. Github has been used as a storage for this info.
+5. [GIMP:](https://www.gimp.org/)
+    - GIMP was used to resize images, export to .jpg and .png and recolour some images.
+7. [Gunicorn:](https://pypi.org/project/gunicorn/)
+    - Gunicorn is a Python WSGI HTTP server that enables deployment to Heroku.
+8. [Stripe:](https://stripe.com/gb)
+    - This is the website that handles secure payment processing for the site.
+9. [Crispy Forms:](https://django-crispy-forms.readthedocs.io/en/latest/)
+    - Allows developers to control rendering behaviour of Django forms efficiently.
+10. [Balsamiq:](https://balsamiq.com/)
+    - Balsamiq has been used for the wireframes attached to this project.
+10. [AWS S3 Buckets:](https://aws.amazon.com/)
+    - to store media files (images, in the main) for the site.
+10. [Boto3:](https://balsamiq.com/)
+    - Allows Python to interact with AWS
+10. [Balsamiq:](https://balsamiq.com/)
+    - Balsamiq has been used for the wireframes attached to this project
+
+
+
+## Testing
+
+Testing has been implemented using tests.py files and manual debugging.
+
+An example of automated testing is as follows:
+
+    Class PostTests(TestCase):
+
+        def setUp(self):
+            """ Create a test post """
+            self.post = Post.objects.create(
+                title = "Test",
+                slug = "test",
+                author = User.objects.create_user("username", "email@email.com", "password"),
+                content = "Test post",
+            )
+
+        def test_blogpost(self):
+            """ Test post content returns correctly """
+            post = Post.objects.get(id=1)
+            expected_object_title = f'{post.title}'
+            expected_object_slug = f'{post.slug}'
+            expected_object_author = f'{post.author}'
+            expected_object_content = f'{post.content}'
+            self.assertEquals(expected_object_title, 'Test')
+            self.assertEquals(expected_object_slug, 'test')
+            self.assertEquals(expected_object_author, 'username')
+            self.assertEquals(expected_object_content, 'Test post')
+
+        def test_post_list_view(self):
+            """ Ensure the blog list displays properly """
+            response = self.client.get(reverse('blog'))
+            self.assertEqual(response.status_code, 200)
+            self.assertTemplateUsed(response, 'index.html')
+
+Coded testing uses tests.py to create 'dummy' products, blogs and polling sessions, and can then test to ensure the completed dummy products are posted correctly.
+
+The W3C Markup Validator, W3C CSS Validator and JS Hint services were used to validate the project.
+
+-   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/)
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+-   [JS Hint](https://jshint.com/)
+-   [PEP8](http://pep8online.com/)
+
+
+### Responsiveness
+
+-   The website has been designed with a mobile-first approach, so all fields should be responsive and should provide ease of use on mobile or tablet devices. 
+-   The website has been tested on mobile, tablet and desktop devices.
+
+### Further Testing
+
+-   The website has been tested using Chrome Developer Tools to ensure any interactions operate correctly (through manually enabling selectors such as :hover or :active)
+-   The website has been tested by other people and feedback has been gathered and acted on.
+
+### Further features
+
+-  Future features will implement pagination for the blog and defensive programming.
+
+
+## Deployment
+This project was developed using [GitPod](https://www.gitpod.io/) and
+using Git for version control. It is deployed using [Heroku](https://heroku.com/).
+
+### Local Deployment
+To be able to run this project, install the following:
+- An IDE of your choice.
+- [Git](https://git-scm.com/)
+- [PIP](https://pip.pypa.io/en/stable/installing/) 
+- [Python3](https://www.python.org/download/releases/3.0/)    
+
+Apart from that, you also need to create accounts with the following services:
+- [Stripe](https://stripe.com/en-ie)
+- [AWS](https://aws.amazon.com/) to setup the [S3 basket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html)
+- [Gmail](https://mail.google.com/)
+- [Heroku](https://heroku.com/)
+
+#### Directions
+1. You can clone this repository directly into the IDE of your choice by pasting the following command into the terminal:   
+`git clone (repo-link-goes-here)
+Alternatively, you can save a copy of this repository by clicking the **Clone or download** button, and extracting files from the ZIP file to your PC.
+
+2. Set up environment variables.     
+ The following syntax will be needed:    
+    ```bash 
+    import os  
+    os.environ["DEVELOPMENT"] = "True"    
+    os.environ["SECRET_KEY"] = "<KEY GOES HERE>"    
+    os.environ["STRIPE_PUBLIC_KEY"] = "<KEY GOES HERE>"    
+    os.environ["STRIPE_SECRET_KEY"] = "<KEY GOES HERE>"    
+    os.environ["STRIPE_WH_SECRET"] = "<KEY GOES HERE>"    
+     ```
+       
+3. Type `pip3 install -r requirements.txt`     
+4. Type `python3 manage.py makemigrations` and `python3 manage.py migrate` to migrate the models. 
+5. Type `python3 manage.py loaddata categories` and `python3 manage.py loaddata products`        
+6. Type `python3 manage.py createsuperuser` to create an admin user.
+7. Type `python3 manage.py runserver` to launch a local hosted version of the site. Add `/admin` to use the admin panel.
+
+### Heroku Deployment
+   
+To deploy the project to [Heroku](https://heroku.com/) the following steps need to be completed:    
+1. Install the following: **gunicorn**, **dj-database-url**, **Psycopg**
+2. Type`pip3 freeze > requirements.txt` to create a list of dependencies.
+3. Create a Procfile, and inside, type: `web: gunicorn art_of_tea.wsgi:application`    
+4. Commit and push these changes.   
+5. Visit [Heroku](https://heroku.com/) to create a free app.     
+6. In Heroku's settings, add the config vars as set out below: 
+
+| KEY            | VALUE         |
+|----------------|---------------|
+| AWS_ACCESS_KEY_ID | `<your aws access key>`  |
+| AWS_SECRET_ACCESS_KEY | `<your aws secret access key>`  |
+| DATABASE_URL| `<your postgres database url>`  |
+| EMAIL_HOST_PASS | `<your email password(generated by Gmail once 2FA has been activated)>` |
+| EMAIL_HOST_USER| `<your email address>`  |
+| SECRET_KEY | `<your secret key>`  |
+| STRIPE_PUBLIC_KEY| `<your stripe public key>`  |
+| STRIPE_SECRET_KEY| `<your stripe secret key>`  |
+| STRIPE_WH_SECRET| `<your stripe wh key>`  |
+| USE_AWS | `true`  |
+
+
+7. Copy **DATABASE_URL** to be used in **settings.py** as follows, saving before continuing:
+  
+```bash 
+  DATABASES = {     
+        'default': dj_database_url.parse("<your Postrgres database URL here>")     
+    }
+  ```
+Do not commit this change as it contains sensitive information. This will be changed shortly. 
+9. Type: `python3 manage.py makemigrations`, `python3 manage.py migrate`     
+10. Type `python3 manage.py loaddata categories` and `python3 manage.py loaddata products`       
+11. Type `python3 manage.py createsuperuser` to create an admin user for the Postgre database.    
+12. Revert the change made in **settings.py**. 
+13. Add your Heroku app URL to **ALLOWED_HOSTS** in the settings.py file.
+14. In Heroku, select the Deployment method to GitHub, and select **Enable Automatic Deploys**. Type `git push` to push changes to GitHub and Heroku.
+15. After successful deployment, you can view your app using the URL specified when creating the app in Heroku.
+
+##### Hosting media files with AWS
+Images are hosted in the [AWS S3 Bucket](https://aws.amazon.com/). To host them, you need to create an account in AWS and create your S3 basket with *public access*. More about setting it up you can read in [Amazon's S3 documentation](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html).
+
+##### Sending email via Gmail
+In order to send real emails from the application, you need to connect it to a **Gmail account**. Two Factor Authentication needs to be enabled for the email to work with sending emails. Remember to add the variables to **settings.py** and Heroku's config vars.
+
+# Credits
+
+### Content
+
+-   CodeInstitute's sample README was used as a guide on how to document a comprehensive design process, and I used this template to inform the layout of my own design journey.
+
+
+### Media
+
+-   Images are sourced by myself using Google's search engine to find Creative Commons licence images.
+
+### Code
+
+-   App ideas and code advice was provided by [Stack Overflow](https://stackoverflow.com/),  [Django Central's tutorials](https://djangocentral.com/building-a-blog-application-with-django/) and [Django's documentation](https://docs.djangoproject.com/en/4.0/intro/tutorial01/). CodeInstitute's practice website was used as a basis to work upon given the complexity of the task.
+
+### Acknowledgements
+
+-   Guido Cecilio for useful and helpful feedback during mentoring sessions.
+
+-   Code Institute for the Slack channel and tutor support when encouring technical issues or sudden Gitpod updates, and for advice and guidance on how other students have approached the task.
+
+-   Stack Overflow for helpful tips on specific questions I had during the creation of this project.
+
+-   Django Central for helping with Django concepts.
